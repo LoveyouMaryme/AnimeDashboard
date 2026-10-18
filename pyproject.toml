@@ -8,6 +8,11 @@ name = "anime-dashboard"
 version = "0.1.0"
 requires-python = ">=3.12"
 
+
+[author]
+name = "Love"
+
+
 [project.optional-dependencies]
 dev = ["pytest>=8"]
 
@@ -16,3 +21,7 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[database]
+type = ""
+path = ""
