@@ -5,7 +5,7 @@ from anime_dashboard.domain.watch_history_entry import WatchHistoryEntry
 
 class WatchHistorySource(Protocol):
     """
-    Represents the contract a watch history source 
+    Represents the contract a watch history source
     must fulfill to be used in the application.
     """
 
@@ -18,4 +18,3 @@ class WatchHistorySource(Protocol):
         """
 
         ...
-        

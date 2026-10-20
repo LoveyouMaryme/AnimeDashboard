@@ -13,7 +13,8 @@ class WatchHistoryEntry:
         watched_at (datetime): The timestamp when the episode was watched.
         source (str): The source of the watch history entry.
     """
+
     anime_title: str
     episode_number: int
     source: str
-    watched_at: datetime   
+    watched_at: datetime
