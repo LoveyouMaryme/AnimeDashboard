@@ -1,6 +1,7 @@
 from anime_dashboard.app.watch_history_source import WatchHistorySource
 from anime_dashboard.domain.watch_history_entry import WatchHistoryEntry
 
+
 class FakeWatchHistorySource(WatchHistorySource):
     """
     A fake watch history source for testing purposes.
