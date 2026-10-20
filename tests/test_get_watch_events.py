@@ -7,7 +7,6 @@ from anime_dashboard.infrastructure.fake_watch_history_source import (
 
 
 def test_get_watch_events():
-
     fake_source = FakeWatchHistorySource()
 
     watched_animes = fake_source.get_watch_events()
