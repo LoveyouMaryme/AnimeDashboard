@@ -8,9 +8,6 @@ class WatchHistorySource(Protocol):
     """
     Represents the contract a watch history source 
     must fulfill to be used in the application.
-
-    Every hour or whenever the user clicks the "Refresh" button, 
-    the application will get the watch history from each registered source.
     """
 
     def get_watch_events(self) -> list[WatchHistoryEntry]:
