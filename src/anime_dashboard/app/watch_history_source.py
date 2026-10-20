@@ -17,9 +17,6 @@ class WatchHistorySource(Protocol):
         """
         Fetches the watch history entries from the source.
 
-        Args:
-            None
-
         Returns:
             list: A list of watch history entries.
         """
