@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from datetime import datetime
 
 
 @dataclass
@@ -15,4 +16,4 @@ class WatchHistoryEntry:
     anime_title: str
     episode_number: int
     source: str
-    watched_at: str
+    watched_at: datetime   
