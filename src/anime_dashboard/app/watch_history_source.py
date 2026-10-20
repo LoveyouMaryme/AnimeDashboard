@@ -3,7 +3,6 @@ from typing import Protocol
 from anime_dashboard.domain.watch_history_entry import WatchHistoryEntry
 
 
-
 class WatchHistorySource(Protocol):
     """
     Represents the contract a watch history source 
