@@ -8,11 +8,11 @@ class WatchHistoryEntry:
 
     Attributes:
         anime_title (str): The title of the anime.
-        episode_number (int): The episode number that was retrieved.
-        retrieved_at (str): The timestamp when the episode was retrieved.
+        episode_number (int): The episode number that was watched.
+        watched_at (str): The timestamp when the episode was watched.
         source (str): The source of the watch history entry.
     """
     anime_title: str
     episode_number: int
     source: str
-    retrieved_at: str
+    watched_at: str
