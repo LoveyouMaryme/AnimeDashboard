@@ -1,6 +1,6 @@
 import pytest
 
-from anime_dashboard.progress import should_update
+from anime_dashboard.domain.progress import should_update
 
 
 def test_should_update_when_source_is_ahead():
