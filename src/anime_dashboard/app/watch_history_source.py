@@ -1,6 +1,6 @@
 from typing import Protocol
 
-from anime_dashboard.domain.WatchHistoryEntry import WatchHistoryEntry
+from anime_dashboard.domain.watch_history_entry import WatchHistoryEntry
 
 
 
