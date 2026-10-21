@@ -8,11 +8,11 @@ class AnimeMappingRepository(Protocol):
 
     """
 
-    def get_mal_id(self, anime_id: str) -> int:
+    def get_mal_id(self, anime_id: str) -> int | None:
         """
         Fetches a mal ID with a correspondible anime_id
 
         Returns:
-            int : mal_id
+            int : mal_id if exists or None
         """
         ...
