@@ -8,7 +8,7 @@ class FakeMalMappingRepository(AnimeMappingRepository):
 
     """
 
-    def get_mal_id_from_crunchyroll(self, crunchyroll_id: str) -> int:
+    def get_mal_id(self, anime_id: str) -> int | None:
         # This would be an external database
         ANIME_REPOSITORY = {
             "CR_001": 20,  # Naruto
@@ -29,9 +29,9 @@ class FakeMalMappingRepository(AnimeMappingRepository):
             
         """
 
-        mal_id = ANIME_REPOSITORY.get(crunchyroll_id)
+        mal_id = ANIME_REPOSITORY.get(anime_id)
 
         if mal_id:
             return mal_id
         else:
-            None
+            return None
