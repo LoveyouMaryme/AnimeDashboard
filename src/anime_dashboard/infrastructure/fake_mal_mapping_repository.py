@@ -15,7 +15,7 @@ class FakeMalMappingRepository(AnimeMappingRepository):
         "CR_005": 5114,  # Fullmetal Alchemist: Brotherhood}
     }
 
-    def get_mal_id(self, anime_id: str) -> int:
+    def get_mal_id(self, anime_id: str) -> int | None:
         """
         Search mal anime id from any streaming platform id in our dictionnary
 
