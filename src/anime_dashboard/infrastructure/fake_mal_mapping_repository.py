@@ -20,6 +20,12 @@ class FakeMalMappingRepository(AnimeMappingRepository):
             "mal_id": 5114,
             "name": "Fullmetal Alchemist: Brotherhood",
         },
+        {
+            "platform": "Crunchyroll",
+            "id": 5,
+            "mal_id": 5112,
+            "name": "Fullmetal Alchemist",
+        },
     ]
 
     def get_mal_id(self, platform_name: str, anime_id: int) -> int | None:
@@ -32,7 +38,14 @@ class FakeMalMappingRepository(AnimeMappingRepository):
         Returns:
             A tuple containing the anime name and MAL ID, or None if not found.
         """
+        matches = []
         for anime in self.ANIME_REPOSITORY:
             if anime["platform"] == platform_name and anime["id"] == anime_id:
-                return anime["name"], anime["mal_id"]
+                matches.append(anime["mal_id"])
+
+            if len(matches) == 1:
+                return matches[0]
+
+            if len(matches) > 1:
+                raise ValueError("There are duplicates or there is an ambiguity")
         return None

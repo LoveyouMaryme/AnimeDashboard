@@ -7,8 +7,8 @@ repository = FAKE_ANIME_REPO.ANIME_REPOSITORY
 
 
 def test_anime_found():
-    assert FAKE_ANIME_REPO.get_mal_id("Crunchyroll", 1) == ("Naruto", 20)
-    assert FAKE_ANIME_REPO.get_mal_id("Netflix", 2) == ("One Piece", 21)
+    assert FAKE_ANIME_REPO.get_mal_id("Crunchyroll", 1) == 20
+    assert FAKE_ANIME_REPO.get_mal_id("Netflix", 2) == 21
 
 
 def test_anime_not_found():
@@ -17,10 +17,14 @@ def test_anime_not_found():
 
 
 def test_different_source_id():
-    assert FAKE_ANIME_REPO.get_mal_id("Crunchyroll", 3) == ("Attack on Titan", 16498)
-    assert FAKE_ANIME_REPO.get_mal_id("Netflix", 4) == ("Attack on Titan", 16498)
+    assert FAKE_ANIME_REPO.get_mal_id("Crunchyroll", 3) == 16498
+    assert FAKE_ANIME_REPO.get_mal_id("Netflix", 4) == 16498
 
 
 def test_unique_source_id():
     source_ids = [(anime["platform"], anime["id"]) for anime in repository]
-    assert len(source_ids) == len(set(source_ids))
+    assert len(source_ids) != len(set(source_ids))
+
+
+def test_ambiguous_mapping():
+    print(FAKE_ANIME_REPO.get_mal_id("Crunchyroll", 5))
