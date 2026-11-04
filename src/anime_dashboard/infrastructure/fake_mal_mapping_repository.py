@@ -22,7 +22,7 @@ class FakeMalMappingRepository(AnimeMappingRepository):
         },
     ]
 
-    def get_mal_id(self, platform_name: str, anime_id: int) -> tuple[str, int] | None:
+    def get_mal_id(self, platform_name: str, anime_id: int) -> int | None:
         """Return the anime name and MAL ID for a platform and numeric anime ID.
 
         Args:
