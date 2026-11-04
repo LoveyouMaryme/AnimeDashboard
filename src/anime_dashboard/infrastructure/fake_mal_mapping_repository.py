@@ -36,7 +36,7 @@ class FakeMalMappingRepository(AnimeMappingRepository):
             anime_id: Numeric anime ID on that platform.
 
         Returns:
-            A tuple containing the anime name and MAL ID, or None if not found.
+            The MAL ID, or None if not found.
         """
         matches = []
         for anime in self.ANIME_REPOSITORY:

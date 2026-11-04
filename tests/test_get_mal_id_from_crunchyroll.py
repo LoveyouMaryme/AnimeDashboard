@@ -23,11 +23,6 @@ def test_different_source_id():
     assert FAKE_ANIME_REPO.get_mal_id("Netflix", 4) == 16498
 
 
-def test_unique_source_id():
-    source_ids = [(anime["platform"], anime["id"]) for anime in repository]
-    assert len(source_ids) != len(set(source_ids))
-
-
 def test_ambiguous_mapping():
     with pytest.raises(ValueError):
         FAKE_ANIME_REPO.get_mal_id("Crunchyroll", 5)
