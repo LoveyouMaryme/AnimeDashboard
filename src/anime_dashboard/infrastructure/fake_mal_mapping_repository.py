@@ -43,9 +43,10 @@ class FakeMalMappingRepository(AnimeMappingRepository):
             if anime["platform"] == platform_name and anime["id"] == anime_id:
                 matches.append(anime["mal_id"])
 
-            if len(matches) == 1:
-                return matches[0]
+        if len(matches) == 1:
+            return matches[0]
 
-            if len(matches) > 1:
-                raise ValueError("There are duplicates or there is an ambiguity")
+        if len(matches) > 1:
+            raise ValueError("There are duplicates or there is an ambiguity")
+
         return None

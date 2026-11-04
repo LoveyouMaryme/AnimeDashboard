@@ -1,3 +1,5 @@
+import pytest
+
 from anime_dashboard.infrastructure.fake_mal_mapping_repository import (
     FakeMalMappingRepository,
 )
@@ -27,4 +29,5 @@ def test_unique_source_id():
 
 
 def test_ambiguous_mapping():
-    print(FAKE_ANIME_REPO.get_mal_id("Crunchyroll", 5))
+    with pytest.raises(ValueError):
+        FAKE_ANIME_REPO.get_mal_id("Crunchyroll", 5)
