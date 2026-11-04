@@ -8,11 +8,15 @@ class AnimeMappingRepository(Protocol):
 
     """
 
-    def get_mal_id(self, anime_id: str) -> int | None:
-        """
-        Fetches a mal ID with a correspondible anime_id
+    def get_mal_id(self, platform_name: str, anime_id: int) -> tuple[str, int] | None:
+        """Find the MyAnimeList (MAL) mapping for a source platform anime ID.
+
+        Args:
+            platform_name: Name of the streaming platform.
+            anime_id: Numeric anime ID on that platform.
 
         Returns:
-            int : mal_id if exists or None
+            A tuple containing the anime name and its MAL ID, or None
+            if no mapping is found.
         """
         ...
