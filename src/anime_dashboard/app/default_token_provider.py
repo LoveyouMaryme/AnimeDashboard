@@ -20,11 +20,11 @@ class DefaultTokenProvider(TokenProvider):
             access_token = storage_info.access_token
             refresh_token = storage_info.refresh_token
         else:
-            return "Initialize the storage with a first Token"
+            raise ValueError("Access token hasn't been initialized")
 
         if expiration_date > datetime.now(timezone.utc):
             return access_token
         else:
             new_token = self.auth.refresh(refresh_token)
             self.storage.save(new_token)
-            return "A new token has been saved"
+            return access_token
