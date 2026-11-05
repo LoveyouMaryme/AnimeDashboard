@@ -25,7 +25,9 @@ def test_save_token():
             "actual_token", "refresh_token", (datetime(9999, 12, 31, 00, 00, 0))
         )
     )
-    assert storage.load() == "123"
+    assert storage.load() == OAuthTokens(
+        "actual_token", "refresh_token", (datetime(9999, 12, 31, 00, 00, 0))
+    )
     storage.save(
         OAuthTokens("new_token", "refresh_token", (datetime(9999, 12, 31, 00, 00, 0)))
     )
