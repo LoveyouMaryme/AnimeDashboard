@@ -25,6 +25,5 @@ class DefaultTokenProvider(TokenProvider):
         if expiration_date > datetime.now(timezone.utc):
             return access_token
         else:
-            new_token = self.auth.refresh(refresh_token)
-            self.storage.save(new_token)
-            return self.storage.load().access_token
+            new_access_token = self.auth.refresh(refresh_token).access_token
+            return new_access_token
