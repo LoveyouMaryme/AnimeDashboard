@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 from anime_dashboard.app.oauth_client import OAuthClient
 from anime_dashboard.app.token_provider import TokenProvider
@@ -14,11 +14,17 @@ class DefaultTokenProvider(TokenProvider):
 
     def get_access_token(self) -> str:
         storage_info = self.storage.load()
-        expiration_date = storage_info.expires_at
-        access_token = storage_info.access_token
-        refresh_token = storage_info.refresh_token
 
-        if expiration_date > datetime.now():
+        if storage_info:
+            expiration_date = storage_info.expires_at
+            access_token = storage_info.access_token
+            refresh_token = storage_info.refresh_token
+        else:
+            return "Initialize the storage with a first Token"
+
+        if expiration_date > datetime.now(timezone.utc):
             return access_token
         else:
-            self.auth.refresh(refresh_token)
+            new_token = self.auth.refresh(refresh_token)
+            self.storage.save(new_token)
+            return "A new token has been saved"
