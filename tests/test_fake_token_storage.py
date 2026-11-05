@@ -16,3 +16,10 @@ def test_save_token():
     assert storage.load() == "123"
     storage.save("456")
     assert storage.load() == "456"
+
+
+def test_different_storage():
+    storage_a = FakeTokenStorage("a")
+    storage_b = FakeTokenStorage("b")
+    assert storage_a.load() == "a"
+    assert storage_b.load() == "b"
