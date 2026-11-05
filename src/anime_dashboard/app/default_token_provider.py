@@ -13,9 +13,9 @@ class DefaultTokenProvider(TokenProvider):
         self.storage = storage
 
     def get_access_token(self) -> str:
-        storage_info = self.storage.load()
+        if self.storage:
+            storage_info = self.storage.load()
 
-        if storage_info:
             expiration_date = storage_info.expires_at
             access_token = storage_info.access_token
             refresh_token = storage_info.refresh_token
