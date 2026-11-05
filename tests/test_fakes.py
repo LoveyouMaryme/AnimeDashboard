@@ -58,3 +58,23 @@ def test_error_bad_token():
     fake_OAuth.refresh("fresh_token")
     with pytest.raises(ValueError):
         fake_OAuth.refresh("new_fresh_token_")
+
+
+def test_counter_two_instance():
+    fake_OAuth_a = FakeOAuthClient(
+        OAuthTokens(
+            "access_token_a",
+            "fresh_token_a",
+            datetime.now(timezone.utc) - timedelta(days=1),
+        )
+    )
+    fake_OAuth_b = FakeOAuthClient(
+        OAuthTokens(
+            "access_token_b",
+            "fresh_token_b",
+            datetime.now(timezone.utc) - timedelta(days=1),
+        )
+    )
+
+    fake_OAuth_a.refresh("fresh_token_a")
+    assert fake_OAuth_b.counter == 0

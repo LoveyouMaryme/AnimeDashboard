@@ -5,18 +5,17 @@ from anime_dashboard.infrastructure.oauth_token import OAuthTokens
 
 
 class FakeOAuthClient(OAuthClient):
-    counter = 0
-
-    def __init__(self, default_oauth_token: OAuthTokens):
+    def __init__(self, default_oauth_token: OAuthTokens, counter: int = 0):
         self.default_oauth_token = default_oauth_token
+        self.counter = counter
 
     def refresh(self, refresh_token: str) -> OAuthTokens:
         if refresh_token == self.default_oauth_token.refresh_token:
-            FakeOAuthClient.counter += 1
+            self.counter += 1
 
             new_token = OAuthTokens(
-                f"new_access_token_{FakeOAuthClient.counter}",
-                f"new_fresh_token_{FakeOAuthClient.counter}",
+                f"new_access_token_{self.counter}",
+                f"new_fresh_token_{self.counter}",
                 datetime.now(timezone.utc),
             )
 
