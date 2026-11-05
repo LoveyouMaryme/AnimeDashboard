@@ -13,3 +13,6 @@ class FakeTokenStorage(TokenStorage):
 
     def load(self) -> OAuthTokens | None:
         return self.tokens
+
+    def save(self, tokens: OAuthTokens) -> None:
+        self.tokens = tokens
