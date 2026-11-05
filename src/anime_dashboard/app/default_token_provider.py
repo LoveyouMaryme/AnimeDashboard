@@ -27,4 +27,4 @@ class DefaultTokenProvider(TokenProvider):
         else:
             new_token = self.auth.refresh(refresh_token)
             self.storage.save(new_token)
-            return access_token
+            return self.storage.load().refresh_token
