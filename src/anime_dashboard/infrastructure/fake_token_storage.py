@@ -8,8 +8,8 @@ class FakeTokenStorage(TokenStorage):
 
     """
 
-    def __init__(self, tokens: OAuthTokens | None):
-        self.tokens = None
+    def __init__(self, tokens: OAuthTokens | None = None):
+        self.tokens = tokens
 
     def load(self) -> OAuthTokens | None:
         pass
