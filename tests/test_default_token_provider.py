@@ -65,10 +65,6 @@ def test_new_token_in_storage():
     token_provider.get_access_token()
 
     # The same fake token that is returned by FakeOAuthClient
-    assert storage.load() == OAuthTokens(
-        access_token="new_access_token_1",
-        refresh_token="new_fresh_token_1",
-        expires_at=datetime(2026, 11, 6, 2, 13, 11, 656245, tzinfo=timezone.utc),
-    )
+    assert storage.load() == auth_client.default_oauth_token
 
     assert storage.load() != default_auth
