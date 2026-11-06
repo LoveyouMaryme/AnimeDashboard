@@ -14,11 +14,28 @@ default_auth = OAuthTokens(
 )
 
 
-def test_no_first_token():
+def test_no_storage():
     token_provider = DefaultTokenProvider(FakeOAuthClient(default_auth), None)
 
     with pytest.raises(ValueError):
         token_provider.get_access_token()
+
+
+def test_no_access_token():
+    token_provider = DefaultTokenProvider(
+        FakeOAuthClient(default_auth), FakeTokenStorage(None)
+    )
+
+    with pytest.raises(ValueError):
+        token_provider.get_access_token()
+
+
+def test_no_refresh_called():
+    storage = FakeTokenStorage(default_auth)
+    auth_client = FakeOAuthClient(default_auth)
+    DefaultTokenProvider(auth_client, storage)
+
+    assert auth_client.counter == 0
 
 
 def test_expiration_date_after():

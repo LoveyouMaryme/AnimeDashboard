@@ -24,11 +24,14 @@ class DefaultTokenProvider(TokenProvider):
         if self.storage:
             storage_info = self.storage.load()
 
-            expiration_date = storage_info.expires_at
-            access_token = storage_info.access_token
-            refresh_token = storage_info.refresh_token
+            if storage_info:
+                expiration_date = storage_info.expires_at
+                access_token = storage_info.access_token
+                refresh_token = storage_info.refresh_token
+            else:
+                raise ValueError("First token hasn't been initialized")
         else:
-            raise ValueError("Access token hasn't been initialized")
+            raise ValueError("Storage hasn't been created")
 
         if expiration_date > datetime.now(timezone.utc):
             return access_token
