@@ -30,18 +30,11 @@ def test_no_access_token():
         token_provider.get_access_token()
 
 
-def test_no_refresh_called():
-    storage = FakeTokenStorage(default_auth)
-    auth_client = FakeOAuthClient(default_auth)
-    DefaultTokenProvider(auth_client, storage)
-
-    assert auth_client.counter == 0
-
-
 def test_expiration_date_after():
+    auth = FakeOAuthClient(default_auth)
     token_provider = DefaultTokenProvider(
-        FakeOAuthClient(default_auth),
-        FakeTokenStorage(
+        auth,
+        storage=FakeTokenStorage(
             OAuthTokens(
                 "access_token",
                 "fresh_token",
@@ -52,6 +45,7 @@ def test_expiration_date_after():
 
     access_token = token_provider.get_access_token()
     assert access_token == "access_token"
+    assert auth.counter == 0
 
 
 def test_expiration_date_before():
