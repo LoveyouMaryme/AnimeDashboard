@@ -16,7 +16,7 @@ class FakeOAuthClient(OAuthClient):
             new_token = OAuthTokens(
                 f"new_access_token_{self.counter}",
                 f"new_fresh_token_{self.counter}",
-                datetime.now(timezone.utc),
+                datetime(2026, 11, 6, 2, 13, 11, 656245, tzinfo=timezone.utc),
             )
 
             self.default_oauth_token = new_token

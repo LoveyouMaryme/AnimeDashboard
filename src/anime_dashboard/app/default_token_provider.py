@@ -13,6 +13,14 @@ class DefaultTokenProvider(TokenProvider):
         self.storage = storage
 
     def get_access_token(self) -> str:
+        """
+        Get access token in the storage if it is still valid,
+        if not will recreate a new one
+
+        return:
+            access_token
+
+        """
         if self.storage:
             storage_info = self.storage.load()
 
@@ -25,5 +33,7 @@ class DefaultTokenProvider(TokenProvider):
         if expiration_date > datetime.now(timezone.utc):
             return access_token
         else:
-            new_access_token = self.auth.refresh(refresh_token).access_token
+            new_oauth_token = self.auth.refresh(refresh_token)
+            self.storage.save(new_oauth_token)
+            new_access_token = new_oauth_token.access_token
             return new_access_token
